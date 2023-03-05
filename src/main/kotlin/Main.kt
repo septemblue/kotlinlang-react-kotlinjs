@@ -1,3 +1,6 @@
+import csstype.Position
+import csstype.px
+import emotion.react.css
 import kotlinx.browser.document
 import react.Fragment
 import react.create
@@ -37,6 +40,11 @@ fun main() {
             }
         }
         div {
+            css {
+                position = Position.absolute
+                top = 10.px
+                right = 10.px
+            }
             h3 {
                 +"John Doe: Building and breaking things"
             }
