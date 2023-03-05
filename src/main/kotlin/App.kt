@@ -20,9 +20,9 @@ val unwatchedVideos = listOf(
     Video(2, "Dissecting the stdlib", "Huyen Tue Dao", "https://youtu.be/Fzt_9I733Yg"),
     Video(3, "Kotlin and Spring Boot", "Nicolas Frankel", "https://youtu.be/pSiZVAeReeg")
 )
-//val watchedVideos = listOf(
-//    Video(4, "Creating Internal DSLs in Kotlin", "Venkat Subramaniam", "https://youtu.be/JzTeAM8N1-o")
-//)
+val watchedVideos = listOf(
+    Video(4, "Creating Internal DSLs in Kotlin", "Venkat Subramaniam", "https://youtu.be/JzTeAM8N1-o")
+)
 /*
 The FC function creates a function component.
 The Kotlin wrappers for React come with a domain-specific language (DSL) that makes it possible to write HTML in pure
@@ -37,11 +37,15 @@ val App = FC<Props> {
         h3 {
             +"Videos to Watch"
         }
-        VideoList()
+        VideoList {
+            videos = unwatchedVideos
+        }
         h3 {
             +"Videos Watched"
         }
-        VideoList()
+        VideoList {
+            videos = watchedVideos
+        }
     }
     div {
         css {
