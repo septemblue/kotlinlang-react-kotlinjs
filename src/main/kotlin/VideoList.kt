@@ -1,8 +1,8 @@
-import kotlinx.browser.window
 import react.FC
 import react.Props
 import react.dom.html.ReactHTML.p
 import react.key
+import react.useState
 
 /*You can add the ability to pass the list of items as an attribute to the component. In React, these attributes are
  called props. When the props of a component are changed in React, the framework automatically re-renders the component.
@@ -14,13 +14,16 @@ external interface VideoListProps : Props {
     var videos: List<Video>
 }
 
-val VideoList = FC<VideoListProps>() { props ->
+val VideoList = FC<VideoListProps> { props ->
+    var selectedVideo: Video? by useState(null)
     for (video in props.videos) {
         p {
             key = video.id.toString()
             onClick = {
-                window.alert("Clicker $video")
+                selectedVideo = video
             }
+            if (video == selectedVideo)
+                +"▶ "
             +"${video.speaker}:  ${video.title}"
         }
     }
