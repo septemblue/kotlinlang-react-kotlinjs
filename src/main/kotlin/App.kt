@@ -7,6 +7,7 @@ import react.dom.html.ReactHTML.div
 import react.dom.html.ReactHTML.h1
 import react.dom.html.ReactHTML.h3
 import react.dom.html.ReactHTML.img
+import react.useState
 
 
 data class Video(
@@ -30,6 +31,7 @@ The Kotlin wrappers for React come with a domain-specific language (DSL) that ma
   benefits of a statically typed language, such as autocomplete or type checking.
  */
 val App = FC<Props> {
+    var currentVideo : Video? by useState(null)
     h1 {
         +"KotlinConf Explorer"
     }
@@ -39,12 +41,20 @@ val App = FC<Props> {
         }
         VideoList {
             videos = unwatchedVideos
+            selectedVideo = currentVideo
+            onSelectedVideo = { video ->
+                currentVideo = video
+            }
         }
         h3 {
             +"Videos Watched"
         }
         VideoList {
             videos = watchedVideos
+            selectedVideo = currentVideo
+            onSelectedVideo = { video ->
+                currentVideo = video
+            }
         }
     }
     div {

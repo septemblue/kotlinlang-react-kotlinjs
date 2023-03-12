@@ -12,7 +12,8 @@ import react.useState
  */
 external interface VideoListProps : Props {
     var videos: List<Video>
-    var selectedVideo: Video
+    var selectedVideo: Video?
+    var onSelectedVideo: (Video) -> Unit
 }
 
 val VideoList = FC<VideoListProps> { props ->
@@ -20,7 +21,7 @@ val VideoList = FC<VideoListProps> { props ->
         p {
             key = video.id.toString()
             onClick = {
-                props.selectedVideo = video
+                props.onSelectedVideo(video)
             }
             if (video == props.selectedVideo)
                 +"▶ "
@@ -35,7 +36,4 @@ It uses the key to determine which parts of a list need to be refreshed and whic
 Defining an onClick function directly as lambda is concise and very useful for prototyping. However, due to the way
 equality currently works in Kotlin/JS, performance-wise it's not the most optimized way to pass click handlers.
 If you want to optimize rendering performance, consider storing your functions in a variable and passing them
- */
-/*
-The process of migrating state from components to their parents is called lifting state.
  */
